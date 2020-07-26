@@ -1,0 +1,33 @@
+title: SocialConnect
+email: talk@dmtry.me
+description: "SocialConnect/Auth is modern open-source social sign library for PHP."
+baseurl: ""
+url: "https://socialconnect.lowl.io"
+twitter_username: ovrweb
+github_username: ovr
+
+author:
+  twitter: ovrweb
+
+search_enabled: true
+
+plugins:
+  - jekyll-feed
+  - jekyll-analytics
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-last-modified-at
+
+markdown: kramdown
+theme: just-the-docs
+
+aux_links:
+  "Online Demo":
+    - "https://sc.lowl.io/"
+  "Source Code on GitHub":
+    - "https://github.com/socialconnect/auth"
+
+jekyll_analytics:
+  GoogleAnalytics:
+    id: UA-20503308-12
+    anonymizeIp: false

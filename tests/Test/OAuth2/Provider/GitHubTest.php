@@ -1,0 +1,51 @@
+<?php
+/**
+ * SocialConnect project
+ * @author: Patsura Dmitry https://github.com/ovr <talk@dmtry.me>
+ */
+
+namespace Test\OAuth2\Provider;
+
+use Psr\Http\Message\ResponseInterface;
+use Jkbennemann\OAuth2\AccessToken;
+
+class GitHubTest extends AbstractProviderTestCase
+{
+    /**
+     * {@inheritdoc}
+     */
+    protected function getProviderClassName()
+    {
+        return \Jkbennemann\OAuth2\Provider\GitHub::class;
+    }
+
+    public function testParseTokenSuccess()
+    {
+        $expectedToken = 'XXXXXXXX';
+
+        $accessToken = $this->getProvider()->parseToken(
+            http_build_query(
+                [
+                    'access_token' => $expectedToken
+                ],
+                null,
+                '&'
+            )
+        );
+
+        parent::assertInstanceOf(AccessToken::class, $accessToken);
+        parent::assertSame($expectedToken, $accessToken->getToken());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function getTestResponseForGetIdentity(): ResponseInterface
+    {
+        return $this->createResponse(
+            json_encode([
+                'id' => 12345,
+            ])
+        );
+    }
+}

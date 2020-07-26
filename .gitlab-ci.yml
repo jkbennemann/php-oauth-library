@@ -1,0 +1,65 @@
+
+stages:
+  - test
+  - build
+
+unit_7_1:
+  stage: test
+  image: registry.gitlab.com/socialconnect-php/auth:7.1
+  script:
+    - composer install -o
+    - ./vendor/bin/phpunit -v --debug --no-coverage;
+  tags:
+    - docker
+
+unit_7_2:
+  stage: test
+  image: registry.gitlab.com/socialconnect-php/auth:7.2
+  script:
+    - composer install -o
+    - ./vendor/bin/phpunit -v --debug --no-coverage;
+  tags:
+    - docker
+
+unit_7_3:
+  stage: test
+  image: registry.gitlab.com/socialconnect-php/auth:7.3
+  script:
+    - composer install -o
+    - ./vendor/bin/phpunit -v --debug --no-coverage;
+  tags:
+    - docker
+
+unit_7_4:
+  stage: test
+  image: registry.gitlab.com/socialconnect-php/auth:7.4
+  script:
+    - composer install -o
+    - ./vendor/bin/phpunit -v --debug --no-coverage;
+  tags:
+    - docker
+
+phpstan:
+  stage: test
+  image: registry.gitlab.com/socialconnect-php/auth:7.3
+  script:
+    - composer install -o
+    - ./vendor/bin/phpstan.phar analyse src/ tests/ --no-progress --level 2
+  tags:
+    - docker
+
+docs:
+  stage: build
+  variables:
+    GIT_STRATEGY: clone
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [""]
+  script:
+    - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
+    - /kaniko/executor --context $CI_PROJECT_DIR/docs --dockerfile $CI_PROJECT_DIR/docs/Dockerfile --destination $CI_REGISTRY_IMAGE:docs
+  only:
+    - master
+    - 3.x
+  tags:
+    - docker

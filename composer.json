@@ -1,0 +1,51 @@
+{
+    "name": "jkbennemann/php-oauth-library",
+    "description": "Social Connect Fork for OAuth login",
+    "keywords": [
+        "socialconnect",
+        "login",
+        "auth",
+        "oauth",
+        "facebook",
+        "google",
+        "twitter",
+        "slack",
+        "twitch",
+        "bitbucket",
+        "amazon",
+        "github",
+        "vk",
+        "gitlab"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jakob Bennemann",
+            "email": "jkb.bennemann@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.1",
+        "ext-json": "*",
+        "psr/http-client": "^1.0",
+        "psr/simple-cache": "^1.0",
+        "psr/http-factory": "^1.0",
+        "socialconnect/jwx": "^1.0"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.3.2",
+        "phpunit/phpunit": "^7.5",
+        "socialconnect/http-client": "^1.0",
+        "phpstan/phpstan-shim": "^0.11.12"
+    },
+    "autoload": {
+        "psr-4": {
+            "Jkbennemann\\": "src/"
+        }
+    },
+    "autoload-dev" : {
+        "psr-4" : {
+            "Test\\" : "tests/Test/"
+        }
+    }
+}
